@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 500px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+    <script>
+        async function checkSpam() {
+            const header = document.getElementById('header').value;
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ header, message })
+            });
+
+            const data = await response.json();
+            document.getElementById('result').innerText = 'Result: ' + data.result;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Spam Detection</h2>
+        <label for="header">Header:</label>
+        <input type="text" id="header" placeholder="Enter header">
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="4" cols="50" placeholder="Enter message"></textarea>
+
+        <button onclick="checkSpam()">Check Spam</button>
+
+        <h3 id="result"></h3>
+    </div>
+</body>
+</html>
