@@ -15,17 +15,17 @@ Spam texts are a daily nuisance and a security risk. Our project builds a **hybr
 
 ## 🛠️ Project Structure
 
-├── app.py                  # Flask Web App
-├── spam.csv                # SMS Spam Dataset
-├── list_header.xlsx        # Trusted Headers
+├── app.py                  
+├── spam.csv                
+├── list_header.xlsx        
 ├── templates/
-│   └── index.html          # Web UI
+│   └── index.html          
 ├── static/
-│   └── style.css           # Styling
-├── spam_model.pkl          # Trained Model
-├── count_vectorizer.pkl    # Saved Vectorizer
+│   └── style.css           
+├── spam_model.pkl          
+├── count_vectorizer.pkl    
 ├── README.md
-└── 
+
 
 ## ⚡ Quickstart
 1. **Clone this repo**
